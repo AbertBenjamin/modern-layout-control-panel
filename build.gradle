@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 repositories {
@@ -21,12 +22,23 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
-group = 'com.example'
+group = 'com.abertbenjamin'
 version = '1.0-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 	options.release.set(11)
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
